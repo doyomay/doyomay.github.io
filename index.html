@@ -152,15 +152,15 @@
             </div>
             <form class="Formulario" id="frmContacto"  action="" method="POST">
                 <label class="Formulario-requerido">
-                    <input class="Formulario-input" name="name" type="text"  placeholder="Nombre" required/>
+                    <input class="Formulario-input" name="from_name" type="text"  placeholder="Nombre" required/>
                     <span class="Formulario-hexagono">*</span>
                 </label>
                 <label class="Formulario-requerido">
-                    <input class="Formulario-input" name="email" type="email" placeholder="Correo" required/>
+                    <input class="Formulario-input" name="reply_to" type="email" placeholder="Correo" required/>
                     <span class="Formulario-hexagono">*</span>
                 </label>
                 <label class="Formulario-requerido">
-                    <input class="Formulario-mensaje" name="mensaje" type="text" placeholder="Mensaje" required/>
+                    <input class="Formulario-mensaje" name="message_html" type="text" placeholder="Mensaje" required/>
                     <span class="Formulario-hexagono Formulario-fixPosition">*</span>
                 </label>
                 <button class="Formulario-enviar"><span class="icon-paper-plane"></span></button>
@@ -225,7 +225,7 @@
         $frm.submit(function(e){
             e.preventDefault();
             $frm.fadeOut();
-            emailjs.send("gmail","template_gxBCVAqC", $frm.serializeArray())
+            emailjs.sendForm("gmail","template_gxBCVAqC", 'frmContacto')
                 .then(function(response) {
                         alert('Gracias por contactarme');
                     }, function(err) {
