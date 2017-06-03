@@ -223,6 +223,7 @@
     $(function(){
         var $frm = $('#frmContacto');
         $frm.submit(function(e){
+            e.preventDefault();
             $frm.fadeOut();
             emailjs.send("gmail","template_gxBCVAqC",$frmContacto.serialize())
                 .then(function(response) {
