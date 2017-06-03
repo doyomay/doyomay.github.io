@@ -7,6 +7,12 @@
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="fonts/stylesheet.css"/>
     <link rel="stylesheet" href="css/main.min.css"/>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("user_UMZqLsLbhUlHhq8a5X8kw");
+       })();
+    </script>
 </head>
 <body>
 <main class="container">
@@ -144,13 +150,13 @@
                     </div>
                 </div>
             </div>
-            <form class="Formulario" action="" method="POST">
+            <form class="Formulario" id="frmContacto"  action="" method="POST">
                 <label class="Formulario-requerido">
-                    <input class="Formulario-input" name="nombre" type="text"  placeholder="Nombre" required/>
+                    <input class="Formulario-input" name="name" type="text"  placeholder="Nombre" required/>
                     <span class="Formulario-hexagono">*</span>
                 </label>
                 <label class="Formulario-requerido">
-                    <input class="Formulario-input" name="correo" type="email" placeholder="Correo" required/>
+                    <input class="Formulario-input" name="email" type="email" placeholder="Correo" required/>
                     <span class="Formulario-hexagono">*</span>
                 </label>
                 <label class="Formulario-requerido">
@@ -213,5 +219,20 @@
 
 </script>
 <script src="js/main.min.js"></script>
+<script>
+    $(function(){
+        var $frm = $('#frmContacto');
+        $frm.submit(function(e){
+            $frm.fadeOut();
+            emailjs.send("gmail","template_gxBCVAqC",$frmContacto.serialize())
+                .then(function(response) {
+                        $frm.fadeIn();
+                        alert('Gracias por contactarme');
+                    }, function(err) {
+               console.log("FAILED. error=", err);
+            });
+        })
+    })
+</script>
 </body>
 </html>
