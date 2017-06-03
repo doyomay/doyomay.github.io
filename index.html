@@ -225,12 +225,14 @@
         $frm.submit(function(e){
             e.preventDefault();
             $frm.fadeOut();
-            emailjs.send("gmail","template_gxBCVAqC",$frmContacto.serialize())
+            emailjs.send("gmail","template_gxBCVAqC", $frm.serialize())
                 .then(function(response) {
-                        $frm.fadeIn();
                         alert('Gracias por contactarme');
                     }, function(err) {
-               console.log("FAILED. error=", err);
+                        $frm.fadeIn(400, null, function(){
+                        alert(err);
+                    });
+               
             });
         })
     })
