@@ -225,7 +225,7 @@
         $frm.submit(function(e){
             e.preventDefault();
             $frm.fadeOut();
-            emailjs.send("gmail","template_gxBCVAqC", $frm.serialize())
+            emailjs.send("gmail","template_gxBCVAqC", $frm.serializeArray())
                 .then(function(response) {
                         alert('Gracias por contactarme');
                     }, function(err) {
